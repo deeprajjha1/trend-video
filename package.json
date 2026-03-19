@@ -1,0 +1,56 @@
+{
+  "name": "trend-video",
+  "version": "1.0.0",
+  "description": "AI-powered content creation pipeline — discover trending YouTube videos, validate ideas with Google Trends, and produce ready-to-upload videos and Instagram Reels",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "test:youtube": "node --test tests/youtube.integration.test.js",
+    "test:pipeline": "node --test tests/pipeline.integration.test.js",
+    "test:e2e": "node --test tests/e2e.integration.test.js",
+    "test:trending": "node --test tests/trending.integration.test.js",
+    "test:ratelimit": "node --test tests/rateLimiter.test.js",
+    "test:research": "node --test tests/research.integration.test.js",
+    "test:instagram": "node --test tests/instagram.test.js",
+    "test:autopilot": "node --test tests/autopilot.integration.test.js"
+  },
+  "keywords": [
+    "youtube",
+    "instagram",
+    "reels",
+    "ai",
+    "content-creation",
+    "automation",
+    "trending",
+    "video",
+    "google-trends",
+    "ollama",
+    "openai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/YOUR_USERNAME/trend-video#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/trend-video.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/trend-video/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.97",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "edge-tts-universal": "^1.4.0",
+    "express": "^4.21.2",
+    "google-trends-api": "^4.9.2",
+    "googleapis": "^144.0.0",
+    "openai": "^4.78.1",
+    "uuid": "^11.1.0"
+  }
+}

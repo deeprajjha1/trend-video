@@ -1,0 +1,30 @@
+Based on the video titles and channel analysis, create thumbnail concepts that drive clicks.
+
+**Channel Analysis (visual patterns):**
+{{analysis}}
+
+**Video Titles:**
+{{titles}}
+
+---
+
+Generate **5 simple, high-converting thumbnail concepts** that can be easily designed in Canva or similar tools. For each concept, specify:
+
+### Concept Details:
+1. **Concept Name**: A short label for this thumbnail idea
+2. **Text Overlay**: Exact short text to place on the thumbnail (2-4 words max)
+3. **Font Style**: Bold, sans-serif, handwritten, etc. — with specific recommendations
+4. **Color Scheme**: Primary and secondary colors with hex codes (e.g., #FF0000 red, #000000 black, #FFFFFF white)
+5. **Background**: What the background should be (solid color, gradient, blurred image, etc.)
+6. **Visual Elements**: Simple graphics to include (arrows, circles, stick figures, graphs, emojis, before/after split, etc.)
+7. **Layout**: Where each element should be positioned (left/right/center, rule of thirds)
+8. **Emotion/Expression**: If a face is included, what expression (shocked, smiling, confused)
+
+### Design Principles Applied:
+- High contrast for mobile visibility
+- Maximum 3 colors
+- Text readable at small sizes
+- Clear focal point
+- Curiosity gap between thumbnail and title
+
+Rank the 5 concepts from most likely to convert to least.

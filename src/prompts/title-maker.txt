@@ -1,0 +1,27 @@
+Review the following video script and channel analysis. Generate titles optimized for maximum click-through rate.
+
+**Channel Analysis (title patterns that work):**
+{{analysis}}
+
+**Video Script:**
+{{script}}
+
+---
+
+Act as a YouTube click-through rate (CTR) expert. Generate **10 irresistible video titles** that:
+
+1. **Spark intense curiosity** — create an information gap the viewer MUST fill
+2. **Promise a clear benefit** — the viewer should know what they'll gain
+3. **Match the style** of top-performing videos from the analysis
+4. **Use power words** strategically (secret, shocking, hidden, proven, etc.)
+5. **Optimal length** — between 40-65 characters for best CTR
+
+For each title, provide:
+- **Title**: The actual title text
+- **Character count**: Length of the title
+- **Psychology trigger**: What makes someone click (curiosity, fear, greed, urgency, etc.)
+- **CTR prediction**: Low / Medium / High / Very High — with a brief reason
+
+Also include:
+- **Top 3 Recommended**: Mark your top 3 picks with a ⭐
+- **A/B Test Suggestion**: Which 2 titles to test against each other

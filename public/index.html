@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrendVideo — YouTube Content Pipeline</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <span class="logo-icon">&#9654;</span>
+          <span class="logo-text">TrendVideo</span>
+        </div>
+        <p class="logo-sub">Content Pipeline</p>
+        <div class="platform-selector">
+          <button class="platform-btn active" data-platform="youtube" title="YouTube (16:9 long-form)">YT</button>
+          <button class="platform-btn" data-platform="instagram" title="Instagram Reels (9:16 short-form)">IG</button>
+        </div>
+        <div class="provider-badge" id="providerBadge"></div>
+      </div>
+
+      <nav class="steps-nav">
+        <button class="step-item active" data-step="0">
+          <span class="step-num">0</span>
+          <span class="step-label">Discover Trends</span>
+        </button>
+        <button class="step-item" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-label">Analyze Channel</span>
+        </button>
+        <button class="step-item" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-label">Channel Names</span>
+        </button>
+        <button class="step-item" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-label">Video Ideas</span>
+        </button>
+        <button class="step-item" data-step="4">
+          <span class="step-num">4</span>
+          <span class="step-label">Script Writer</span>
+        </button>
+        <button class="step-item" data-step="5">
+          <span class="step-num">5</span>
+          <span class="step-label">Title Maker</span>
+        </button>
+        <button class="step-item" data-step="6">
+          <span class="step-num">6</span>
+          <span class="step-label">Thumbnail Plan</span>
+        </button>
+        <button class="step-item" data-step="7">
+          <span class="step-num">7</span>
+          <span class="step-label">Audio Brief</span>
+        </button>
+
+        <div class="nav-divider"><span>Production</span></div>
+
+        <button class="step-item" data-step="8">
+          <span class="step-num">8</span>
+          <span class="step-label">Voiceover</span>
+        </button>
+        <button class="step-item" data-step="9">
+          <span class="step-num">9</span>
+          <span class="step-label">Thumbnail</span>
+        </button>
+        <button class="step-item" data-step="10">
+          <span class="step-num">10</span>
+          <span class="step-label">B-Roll</span>
+        </button>
+        <button class="step-item" data-step="11">
+          <span class="step-num">11</span>
+          <span class="step-label">Final Video</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline btn-export" id="exportBtn" disabled>Export Package</button>
+        <button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="app.newSession()">+ New Session</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Step 0: Source Videos -->
+      <section class="step-panel active" data-panel="0">
+        <div class="panel-header">
+          <h1>Discover Trends</h1>
+          <p class="panel-desc">Find what's trending on YouTube right now, or provide your own channel/video URLs to analyze.</p>
+        </div>
+
+        <div class="input-tabs">
+          <button class="tab-btn active" data-tab="trending">Discover Trending</button>
+          <button class="tab-btn" data-tab="channel">Channel URL</button>
+          <button class="tab-btn" data-tab="videos">Video URLs</button>
+        </div>
+
+        <div class="tab-content active" data-tab-content="trending">
+          <div class="trending-controls">
+            <div class="input-group" style="flex:1;min-width:180px">
+              <label>Category</label>
+              <select id="trendingCategory" class="input">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+            <div class="input-group" style="flex:0 0 180px">
+              <label>Region</label>
+              <select id="trendingRegion" class="input">
+                <option value="US">United States</option>
+              </select>
+            </div>
+            <div class="input-group" style="flex:0 0 100px">
+              <label>Count</label>
+              <select id="trendingCount" class="input">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="fetchTrendingBtn">
+            <span class="btn-text">Discover Trending Videos</span>
+            <span class="btn-loader"></span>
+          </button>
+          <div id="trendingResult" class="hidden" style="margin-top:20px">
+            <div class="trending-header">
+              <h3 class="result-title" id="trendingTitle">Trending Now</h3>
+              <span class="trending-count" id="trendingCount2"></span>
+            </div>
+            <p class="trending-hint">Select the videos you want to analyze, then click "Use Selected Videos" below.</p>
+            <div class="select-actions" style="margin:12px 0">
+              <button class="btn btn-ghost btn-sm" id="selectAllTrending">Select All</button>
+              <button class="btn btn-ghost btn-sm" id="deselectAllTrending">Deselect All</button>
+            </div>
+            <div id="trendingGrid" class="trending-grid"></div>
+            <div class="trending-actions" style="margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+              <button class="btn btn-primary" id="useTrendingBtn" disabled>
+                <span class="btn-text">Use Selected Videos (0)</span>
+                <span class="btn-loader"></span>
+              </button>
+              <span class="trending-actions-divider">or</span>
+              <button class="btn btn-accent" id="autopilotBtn" disabled>
+                <span class="btn-text">Autopilot: Produce Videos</span>
+                <span class="btn-loader"></span>
+              </button>
+            </div>
+            <p class="trending-hint" style="margin-top:8px; font-size:0.82rem; opacity:0.6">
+              <strong>Use Selected</strong> = manual step-by-step control &nbsp;|&nbsp;
+              <strong>Autopilot</strong> = fully automated video production for each selected video
+            </p>
+
+            <div id="autopilotPanel" class="hidden" style="margin-top:24px">
+              <div class="autopilot-config">
+                <h3 style="margin:0 0 12px">Autopilot Settings</h3>
+                <div class="trending-controls">
+                  <div class="input-group" style="flex:1;min-width:160px">
+                    <label>Voice</label>
+                    <select id="autopilotVoice" class="input">
+                      <option value="male-us">Male — US English</option>
+                      <option value="female-us">Female — US English</option>
+                      <option value="male-uk">Male — UK English</option>
+                      <option value="female-uk">Female — UK English</option>
+                      <option value="male-in-en">Male — Indian English</option>
+                      <option value="female-in-en">Female — Indian English</option>
+                      <option value="male-in-hi">Male — Hindi</option>
+                      <option value="female-in-hi">Female — Hindi</option>
+                      <option value="male-au">Male — Australian</option>
+                      <option value="female-au">Female — Australian</option>
+                    </select>
+                  </div>
+                  <div class="input-group" style="flex:0 0 140px">
+                    <label>Thumbnail Style</label>
+                    <select id="autopilotColorScheme" class="input">
+                      <option value="0">Red/Yellow Bold</option>
+                      <option value="1">Blue/White Clean</option>
+                      <option value="2">Purple/Pink Neon</option>
+                      <option value="3">Green/Black Tech</option>
+                      <option value="4">Orange/Dark Warm</option>
+                    </select>
+                  </div>
+                </div>
+                <button class="btn btn-accent" id="startAutopilotBtn" style="margin-top:12px">
+                  <span class="btn-text">Start Autopilot</span>
+                  <span class="btn-loader"></span>
+                </button>
+              </div>
+
+              <div id="autopilotProgress" class="hidden" style="margin-top:20px">
+                <div class="autopilot-status">
+                  <div class="autopilot-status-header">
+                    <span class="autopilot-status-icon" id="autopilotIcon">&#9881;</span>
+                    <span id="autopilotStatusText">Starting...</span>
+                  </div>
+                  <div class="autopilot-bar-wrap">
+                    <div class="autopilot-bar" id="autopilotBar" style="width:0%"></div>
+                  </div>
+                  <div class="autopilot-detail" id="autopilotDetail"></div>
+                  <div id="autopilotLog" class="autopilot-log"></div>
+                </div>
+              </div>
+
+              <div id="autopilotResults" class="hidden" style="margin-top:20px">
+                <h3>Produced Videos</h3>
+                <div id="autopilotResultsGrid" class="trending-grid"></div>
+                <div id="autopilotErrors" class="hidden" style="margin-top:12px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" data-tab-content="channel">
+          <div class="input-group">
+            <label>YouTube Channel URL</label>
+            <input type="text" id="channelUrl" placeholder="https://www.youtube.com/@channelname" class="input">
+            <span class="input-hint">Requires YouTube API key. Supports @handle, /channel/, /c/ formats.</span>
+          </div>
+          <button class="btn btn-primary" id="fetchVideosBtn">
+            <span class="btn-text">Fetch Videos</span>
+            <span class="btn-loader"></span>
+          </button>
+        </div>
+
+        <div class="tab-content" data-tab-content="videos">
+          <div class="input-group">
+            <label>Video URLs <span class="label-hint">(one per line, 5-15 recommended)</span></label>
+            <textarea id="videoUrls" rows="8" placeholder="https://www.youtube.com/watch?v=abc123&#10;https://www.youtube.com/watch?v=def456&#10;https://youtu.be/ghi789" class="input textarea"></textarea>
+          </div>
+          <button class="btn btn-primary" id="fetchManualBtn">
+            <span class="btn-text">Fetch Videos</span>
+            <span class="btn-loader"></span>
+          </button>
+        </div>
+
+        <div id="videosResult" class="result-area hidden">
+          <h3 class="result-title">Fetched Videos</h3>
+          <div id="videosList" class="videos-grid"></div>
+
+          <button class="btn btn-primary" id="fetchTranscriptsBtn">
+            <span class="btn-text">Fetch Transcripts &amp; Continue</span>
+            <span class="btn-loader"></span>
+          </button>
+
+          <div id="transcriptStats" class="stats-bar hidden"></div>
+        </div>
+      </section>
+
+      <!-- Step 1: Analyze -->
+      <section class="step-panel" data-panel="1">
+        <div class="panel-header">
+          <h1>Channel Analysis</h1>
+          <p class="panel-desc">AI will analyze the videos and extract the exact formula that makes this channel successful.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep1">
+          <span class="btn-text">Run Analysis</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result1" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(1)">Regenerate</button>
+          </div>
+          <div class="result-content markdown-body"></div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="2">Next: Channel Names &rarr;</button>
+      </section>
+
+      <!-- Step 2: Channel Names -->
+      <section class="step-panel" data-panel="2">
+        <div class="panel-header">
+          <h1>Channel Name Ideas</h1>
+          <p class="panel-desc">Generate unique, memorable channel names based on the niche analysis.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep2">
+          <span class="btn-text">Generate Names</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result2" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(2)">Regenerate</button>
+          </div>
+          <div class="result-content markdown-body"></div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="3">Next: Video Ideas &rarr;</button>
+      </section>
+
+      <!-- Step 3: Video Ideas -->
+      <section class="step-panel" data-panel="3">
+        <div class="panel-header">
+          <h1>Video Ideas</h1>
+          <p class="panel-desc">Generate high-potential video ideas based on proven patterns and content gaps.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep3">
+          <span class="btn-text">Generate Ideas</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result3" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(3)">Regenerate</button>
+            <button class="btn btn-sm btn-accent" id="validateIdeasBtn">
+              <span class="btn-text">Validate with Research</span>
+              <span class="btn-loader"></span>
+            </button>
+          </div>
+          <div class="result-content markdown-body"></div>
+          <div id="researchResults" class="research-results hidden"></div>
+          <div class="idea-selector">
+            <label>Select or type the video idea you want to script:</label>
+            <textarea id="selectedIdea" rows="3" class="input textarea" placeholder="Paste or type the video idea you want to develop into a full script..."></textarea>
+          </div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="4">Next: Write Script &rarr;</button>
+      </section>
+
+      <!-- Step 4: Script Writer -->
+      <section class="step-panel" data-panel="4">
+        <div class="panel-header">
+          <h1>Script Writer</h1>
+          <p class="panel-desc">Generate a complete, ready-to-record video script with hooks, pacing, and CTAs.</p>
+        </div>
+        <div class="input-group">
+          <label>Video Idea</label>
+          <textarea id="scriptVideoIdea" rows="3" class="input textarea" placeholder="The video idea will be auto-filled from Step 3, or type your own..."></textarea>
+        </div>
+        <div class="input-group">
+          <label>Additional Instructions <span class="label-hint">(optional)</span></label>
+          <input type="text" id="scriptInstructions" class="input" placeholder="e.g., Make it 8 minutes long, target beginners...">
+        </div>
+        <button class="btn btn-primary" id="runStep4">
+          <span class="btn-text">Write Script</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result4" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(4)">Regenerate</button>
+          </div>
+          <div class="result-content markdown-body"></div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="5">Next: Generate Titles &rarr;</button>
+      </section>
+
+      <!-- Step 5: Title Maker -->
+      <section class="step-panel" data-panel="5">
+        <div class="panel-header">
+          <h1>Title Maker</h1>
+          <p class="panel-desc">Generate click-worthy titles optimized for maximum CTR.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep5">
+          <span class="btn-text">Generate Titles</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result5" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(5)">Regenerate</button>
+          </div>
+          <div class="result-content markdown-body"></div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="6">Next: Plan Thumbnails &rarr;</button>
+      </section>
+
+      <!-- Step 6: Thumbnail Planner -->
+      <section class="step-panel" data-panel="6">
+        <div class="panel-header">
+          <h1>Thumbnail Planner</h1>
+          <p class="panel-desc">Get detailed thumbnail concepts you can easily build in Canva.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep6">
+          <span class="btn-text">Plan Thumbnails</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result6" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(6)">Regenerate</button>
+          </div>
+          <div class="result-content markdown-body"></div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="7">Next: Audio Brief &rarr;</button>
+      </section>
+
+      <!-- Step 7: Audio Brief -->
+      <section class="step-panel" data-panel="7">
+        <div class="panel-header">
+          <h1>Audio Brief</h1>
+          <p class="panel-desc">Generate a voiceover-ready brief for AI narration tools like NotebookLM or ElevenLabs.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep7">
+          <span class="btn-text">Generate Audio Brief</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result7" class="result-area hidden">
+          <div class="result-actions">
+            <button class="btn btn-sm btn-ghost" onclick="app.regenerate(7)">Regenerate</button>
+          </div>
+          <div class="result-content markdown-body"></div>
+        </div>
+        <div class="content-complete-banner hidden" id="contentCompleteBanner">
+          <p>Content package complete! Continue to production steps, or export the text package now.</p>
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <button class="btn btn-primary" onclick="app.goToStep(8)">Continue to Production</button>
+            <button class="btn btn-secondary" onclick="app.exportPackage()">Export Text Package</button>
+          </div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="8">Next: Generate Voiceover &rarr;</button>
+      </section>
+
+      <!-- Step 8: Voiceover -->
+      <section class="step-panel" data-panel="8">
+        <div class="panel-header">
+          <h1>Voiceover</h1>
+          <p class="panel-desc">Generate a free AI voiceover from your script using Microsoft Edge TTS. No API key needed.</p>
+        </div>
+        <div class="input-group">
+          <label>Voice</label>
+          <select id="voiceSelect" class="input">
+            <option value="male-us">Male — US English (Guy)</option>
+            <option value="female-us">Female — US English (Jenny)</option>
+            <option value="male-uk">Male — UK English (Ryan)</option>
+            <option value="female-uk">Female — UK English (Sonia)</option>
+            <option value="male-in-en">Male — Indian English (Prabhat)</option>
+            <option value="female-in-en">Female — Indian English (Neerja)</option>
+            <option value="male-in-hi">Male — Hindi (Madhur)</option>
+            <option value="female-in-hi">Female — Hindi (Swara)</option>
+            <option value="male-au">Male — Australian (William)</option>
+            <option value="female-au">Female — Australian (Natasha)</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="runStep8">
+          <span class="btn-text">Generate Voiceover</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result8" class="result-area hidden">
+          <div class="result-content">
+            <div class="production-preview">
+              <div class="preview-info" id="voiceoverInfo"></div>
+              <audio controls id="voiceoverPlayer" class="audio-player"></audio>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="9">Next: Generate Thumbnail &rarr;</button>
+      </section>
+
+      <!-- Step 9: Thumbnail -->
+      <section class="step-panel" data-panel="9">
+        <div class="panel-header">
+          <h1>Thumbnail Generator</h1>
+          <p class="panel-desc">Auto-generate a bold YouTube thumbnail from your title. Free, no API key needed.</p>
+        </div>
+        <div class="input-group">
+          <label>Color Scheme</label>
+          <div class="color-scheme-picker" id="colorSchemePicker">
+            <button class="color-swatch active" data-scheme="0" style="background:#1a1a2e;border:2px solid #e94560" title="Dark + Red"></button>
+            <button class="color-swatch" data-scheme="1" style="background:#0f0f0f;border:2px solid #FFD700" title="Black + Gold"></button>
+            <button class="color-swatch" data-scheme="2" style="background:#FF0000;border:2px solid #000" title="Red + White"></button>
+            <button class="color-swatch" data-scheme="3" style="background:#000;border:2px solid #00FF88" title="Black + Green"></button>
+            <button class="color-swatch" data-scheme="4" style="background:#1B0A3C;border:2px solid #FF6B35" title="Purple + Orange"></button>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Custom Text <span class="label-hint">(optional — auto-extracted from titles if blank)</span></label>
+          <input type="text" id="thumbnailText" class="input" placeholder="e.g., STOP DOING THIS">
+        </div>
+        <button class="btn btn-primary" id="runStep9">
+          <span class="btn-text">Generate Thumbnail</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result9" class="result-area hidden">
+          <div class="result-content">
+            <div class="production-preview">
+              <div class="preview-info" id="thumbnailInfo"></div>
+              <img id="thumbnailPreview" class="thumbnail-preview" alt="Generated thumbnail">
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="10">Next: Download B-Roll &rarr;</button>
+      </section>
+
+      <!-- Step 10: B-Roll -->
+      <section class="step-panel" data-panel="10">
+        <div class="panel-header">
+          <h1>B-Roll</h1>
+          <p class="panel-desc">Download free stock video clips from Pexels based on your script content. Requires a free Pexels API key.</p>
+        </div>
+        <div class="info-banner">
+          <strong>Free API key required:</strong> Get one at <a href="https://www.pexels.com/api/new/" target="_blank">pexels.com/api</a> and add <code>PEXELS_API_KEY=your_key</code> to your <code>.env</code> file. This step is optional — skip to Step 11 if you don't need b-roll.
+        </div>
+        <button class="btn btn-primary" id="runStep10">
+          <span class="btn-text">Download B-Roll Clips</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result10" class="result-area hidden">
+          <div class="result-content">
+            <div class="production-preview" id="brollPreview"></div>
+          </div>
+        </div>
+        <button class="btn btn-secondary next-btn hidden" data-next="11">Next: Assemble Video &rarr;</button>
+      </section>
+
+      <!-- Step 11: Final Video -->
+      <section class="step-panel" data-panel="11">
+        <div class="panel-header">
+          <h1>Final Video</h1>
+          <p class="panel-desc">Assemble voiceover + b-roll into a finished MP4 using FFmpeg. If no b-roll, a solid background is used.</p>
+        </div>
+        <button class="btn btn-primary" id="runStep11">
+          <span class="btn-text">Assemble Video</span>
+          <span class="btn-loader"></span>
+        </button>
+        <div id="result11" class="result-area hidden">
+          <div class="result-content">
+            <div class="production-preview">
+              <div class="preview-info" id="videoInfo"></div>
+              <video controls id="videoPlayer" class="video-player"></video>
+            </div>
+          </div>
+        </div>
+        <div class="completion-banner hidden" id="completionBanner">
+          <h2>Full Video Package Complete!</h2>
+          <p>Your video, thumbnail, and content package are ready.</p>
+          <button class="btn btn-primary" onclick="app.exportPackage()">Download Content Package</button>
+        </div>
+        <div class="ig-publish-panel hidden" id="igPublishPanel">
+          <h3>Publish to Instagram</h3>
+          <p class="panel-desc">Publish this Reel directly to your Instagram account.</p>
+          <div class="input-group">
+            <label>Caption</label>
+            <textarea id="igCaption" rows="3" class="input textarea" placeholder="Write your Instagram caption..."></textarea>
+          </div>
+          <div class="ig-account-info" id="igAccountInfo"></div>
+          <button class="btn btn-accent" id="igPublishBtn">
+            <span class="btn-text">Publish Reel to Instagram</span>
+            <span class="btn-loader"></span>
+          </button>
+          <div id="igPublishResult" class="hidden" style="margin-top:12px"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+I want to create a YouTube video based on the following idea. Use the channel analysis to match the exact tone, pacing, and structure of the successful videos we studied.
+
+**Channel Analysis (proven formula):**
+{{analysis}}
+
+**Video Idea:**
+{{videoIdea}}
+
+{{additionalInstructions}}
+
+---
+
+Act as a professional YouTube scriptwriter. Write a **complete, ready-to-record video script** that follows the proven formula from the analysis. Structure it as:
+
+### 1. HOOK (First 5 seconds)
+- Write a powerful, attention-grabbing opening line
+- Must create immediate curiosity or tension
+- Follow the hook patterns identified in the analysis
+
+### 2. PROBLEM SETUP (15-30 seconds)
+- Establish why the viewer should care
+- Create a knowledge gap or emotional tension
+- Make it personal and relatable
+
+### 3. VALUE DELIVERY (Main body — 70% of script)
+- Deliver the core content in a structured, engaging way
+- Match the pacing style from the analysis (list-based, story-based, etc.)
+- Include pattern interrupts every 60-90 seconds to maintain retention
+- Use the tone and language patterns from the analysis
+
+### 4. CALL TO ACTION (Final 15-30 seconds)
+- Natural, non-pushy CTA
+- Connect back to the hook/promise
+- Tease next video if possible
+
+Format the script with clear section markers. Write it conversationally — this is meant to be spoken, not read. Include [VISUAL NOTES] in brackets where specific B-roll or graphics should appear.

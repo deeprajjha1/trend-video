@@ -1,0 +1,36 @@
+I want to create a short-form Instagram Reel (30-60 seconds max) based on the following idea. This must be punchy, fast-paced, and designed for vertical video (9:16).
+
+**Source Analysis:**
+{{analysis}}
+
+**Video Idea:**
+{{videoIdea}}
+
+{{additionalInstructions}}
+
+---
+
+Act as a viral short-form content creator. Write a **complete 30-60 second script** optimized for Instagram Reels. Rules:
+
+### 1. HOOK (First 1-3 seconds)
+- The FIRST LINE must stop the scroll immediately
+- Use a bold claim, shocking stat, or provocative question
+- No intros, no "hey guys" — start with the value
+
+### 2. CORE VALUE (15-40 seconds)
+- Deliver 3-5 rapid-fire points or one compelling story
+- Each sentence must be standalone punchy — people skim
+- Use short sentences. Sentence fragments are fine.
+- Match the energy of trending Reels: confident, direct, slightly edgy
+
+### 3. CTA + PAYOFF (3-5 seconds)
+- End with a strong hook-back or mic-drop line
+- "Follow for more" is fine but make it earned
+- Or end with a cliffhanger → "Part 2?"
+
+**FORMAT RULES:**
+- Total script must be speakable in 30-60 seconds (roughly 80-150 words)
+- Write ONLY the spoken narration — no stage directions, no [VISUAL NOTES]
+- Each line should be its own beat — add line breaks between sentences
+- Do NOT use markdown formatting — just plain spoken text
+- Write conversationally — this is spoken fast, not read slowly

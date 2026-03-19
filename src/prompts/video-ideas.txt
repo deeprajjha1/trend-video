@@ -1,0 +1,24 @@
+Based on the following analysis of successful videos in this niche, generate video ideas for a new channel.
+
+**Channel Analysis:**
+{{analysis}}
+
+---
+
+Generate **10 highly engaging video ideas** for a new channel in this niche. Use the content gaps, popular themes, and proven patterns from the analysis.
+
+For each idea, provide:
+
+1. **Working Title**: A compelling title that follows the proven patterns from the analysis
+2. **Core Message**: 2-3 sentences describing what the video will teach/show/reveal
+3. **Target Emotion**: The primary emotion this video targets (curiosity, fear, excitement, etc.)
+4. **Estimated Retention Strategy**: How this topic keeps viewers watching until the end
+5. **Difficulty**: Easy / Medium / Hard (how complex is this to produce)
+
+Prioritize ideas that:
+- Fill content gaps identified in the analysis
+- Have proven demand based on what's already working
+- Can generate high watch time and engagement
+- Are achievable for a new channel
+
+Order them from highest potential impact to lowest.

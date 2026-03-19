@@ -1,0 +1,32 @@
+I have collected data from top-performing YouTube videos in a specific niche. Below is the source material including video titles, descriptions, view counts, and transcripts.
+
+**Channel Info:**
+{{channelInfo}}
+
+**Video Data:**
+{{videoData}}
+
+**Transcripts:**
+{{transcripts}}
+
+---
+
+Read all of this source material carefully and produce a detailed analysis covering:
+
+1. **Script Structure**: Break down the exact script format these videos follow (intro → hook → body → CTA). How long is each section proportionally?
+
+2. **Video Topics & Themes**: What are the recurring topics? What content pillars does this channel rely on? What makes these topics resonate?
+
+3. **Hook Styles**: List the specific hook techniques used in the first 5-15 seconds. Are they questions, shocking statements, previews, or stories? Give exact examples.
+
+4. **Pacing & Rhythm**: How does the content flow? Is it fast-cut, slow-burn, list-based, narrative? How do they maintain retention throughout?
+
+5. **Tone & Voice**: Describe the overall tone (casual, authoritative, excited, calm). What personality traits come through? What language patterns are used?
+
+6. **Engagement Tactics**: How do they drive likes, comments, and subscriptions? What CTAs are used and where?
+
+7. **Title & Thumbnail Patterns**: What patterns appear in their most-viewed video titles? Length, power words, number usage, curiosity gaps?
+
+8. **Content Gaps**: What topics or angles are they NOT covering that could be opportunities?
+
+Provide a comprehensive, actionable blueprint that someone could use to replicate this channel's success formula.

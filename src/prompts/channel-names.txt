@@ -1,0 +1,20 @@
+Based on the following analysis of a successful YouTube channel in this niche, generate channel name ideas for a new competing channel.
+
+**Channel Analysis:**
+{{analysis}}
+
+---
+
+Generate **10 unique, memorable YouTube channel name ideas** that:
+
+1. Establish authority and expertise in this niche
+2. Appeal directly to the target audience identified in the analysis
+3. Are easy to remember, spell, and search for
+4. Work well as a brand (suitable for logos, social media handles)
+5. Are not generic — each should have a distinct personality
+
+For each name, provide:
+- **Name**: The channel name
+- **Tagline**: A short tagline (5-8 words)
+- **Why it works**: 1-2 sentences on why this name fits the niche and audience
+- **Handle availability hint**: Suggest a clean @handle version

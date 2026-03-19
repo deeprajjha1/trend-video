@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment (contains API keys)
+.env
+
+# Generated output files
+output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak

@@ -1,0 +1,38 @@
+Summarize the following video script into a concise brief optimized for AI voiceover generation (e.g., NotebookLM Audio Overview, ElevenLabs, or similar tools).
+
+**Video Script:**
+{{script}}
+
+---
+
+Create a comprehensive **Audio Generation Brief** with the following sections:
+
+### 1. VOICE DIRECTION
+- **Tone**: Describe the ideal voice tone (e.g., confident, conversational, energetic)
+- **Pacing**: Speaking speed guidance (words per minute range, where to slow down/speed up)
+- **Emphasis Words**: List key words/phrases that should be stressed
+- **Pauses**: Where to place dramatic pauses for effect
+
+### 2. CONDENSED SCRIPT
+Rewrite the script in a clean, voiceover-ready format:
+- Remove all visual notes and stage directions
+- Smooth out any written-language phrases into natural speech
+- Add pronunciation guides for any unusual words
+- Mark emotional beats with [EXCITED], [SERIOUS], [WHISPER], etc.
+
+### 3. EMOTIONAL ARC
+Map out the emotional journey of the narration:
+- Opening energy level (1-10)
+- Key emotional shifts throughout
+- Climax moment
+- Closing energy level
+
+### 4. NOTEBOOKLM SUMMARY
+If using NotebookLM's Audio Overview feature, paste this optimized summary as the source:
+
+> [Provide a self-contained summary of the entire video content that captures the key points, emotional beats, and conversational tone — designed to produce a natural podcast-style voiceover when fed into NotebookLM]
+
+### 5. MUSIC/SFX SUGGESTIONS
+- Background music mood and genre recommendations
+- Key moments where sound effects would enhance the narration
+- Volume mixing notes (music louder during intros/transitions, softer during key points)
